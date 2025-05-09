@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "globals.h"
 #include "Input.h"
 
@@ -48,6 +49,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	prevTime = GetNowCount();
 
 	Player* player = new Player();
+	Enemy* enemy = new Enemy[10];
+	for (int i = 0; i < 10; i++)
+	{
+		enemy[i].SetPosition(100 + i * 50, 100);
+	}
 
 	while (true)
 	{
@@ -61,6 +67,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		player->Update();
 		player->Draw();
+
+		for (int i = 0; i < 10; i++)
+		{
+			(enemy + i)->Update();
+			(enemy + i)->Draw();
+			//enemy[i].Update();
+			//enemy[i].Draw();
+		}
 
 		ScreenFlip();
 		WaitTimer(16);

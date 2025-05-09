@@ -29,21 +29,24 @@ Player::Player()
 
 Player::~Player()
 {
+	//画像のサイズを開放　後で書いて
 }
 
 void Player::Update()
 {
+	float dt = GetDeltaTime();	//フレーム間の時間差を取得
 	if (Input::IsKeepKeyDown(KEY_INPUT_LEFT))
 	{
-		x_ -= speed_ * GetDeltaTime();	//左に移動
+		x_ = x_ - speed_ * dt;	//左に移動
 	}
 	if (Input::IsKeepKeyDown(KEY_INPUT_RIGHT))
 	{
-		x_ += speed_ * GetDeltaTime();	//右に移動
+		x_ = x_ + speed_ * dt;	//右に移動
 	}
 }
 
 void Player::Draw()
 {
+	//プレイヤーの画像を描画(画像の原点は左上)
 	DrawExtendGraph(x_, y_, x_ + PLAYER_IMAGE_WIDHT, y_ + PLAYER_IMAGE_HEIGHT, hPlayerImage_, TRUE);
 }
