@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include <DxLib.h>
+#include <string>
 
 namespace
 {
@@ -14,6 +15,34 @@ Enemy::Enemy()
 	:GameObject(), hEnemyImage_(-1), x_(0), y_(0), speed_(0), isAlive_(true)
 {
 	hEnemyImage_ = LoadGraph("Assets\\画像\\tiny_ship10.png");	//敵の画像を読み込む
+	if (hEnemyImage_ == -1)
+	{
+		//画像の読み込みに失敗したときにエラーメッセージを出す
+	}
+	x_ = ENEMY_INIT_X;
+	y_ = ENEMY_INIT_Y;
+	speed_ = ENEMY_INIT_SPEED;
+	//idとtypeが指定されなかった時の処理をここに書かないと…
+}
+
+Enemy::Enemy(int id, ETYPE type)
+	:GameObject(),hEnemyImage_(-1),x_(0),y_(0),speed_(0),isAlive_(true),ID_(id),type_(type)
+{
+	/*ETYPE::ZAKO=>"Assets\\画像\\tiny_ship10.png"
+	ETYPE::MID=>"Assets\\画像\\tiny_ship16.png"
+	ETYPE::KNIGHT=>"Assets\\画像\\tiny_ship9.png"
+	ETYPE::BOSS=>"Assets\\画像\\tiny_ship18.png"*/
+
+	//画像の読み込み
+	std::string imagePath[MAX_ETYPE] =
+	{
+		"Assets\\画像\\tiny_ship10.png",	//ZAKO
+		"Assets\\画像\\tiny_ship16.png",	//MID
+		"Assets\\画像\\tiny_ship9.png",		//KNIGHT
+		"Assets\\画像\\tiny_ship18.png"		//BOSS
+	};
+	
+	hEnemyImage_ = LoadGraph(imagePath[type_].c_str());	//敵の画像を読み込む
 	if (hEnemyImage_ == -1)
 	{
 		//画像の読み込みに失敗したときにエラーメッセージを出す
