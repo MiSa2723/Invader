@@ -11,6 +11,10 @@ namespace
 	int prevTime;
 }
 
+std::vector<GameObject*> gameObjects;		//ゲームオブジェクトのベクター
+std::vector<GameObject*> newObjects;		//ゲームオブジェクトのベクター
+
+
 float gDeltaTime = 0.0f;	//フレーム間の時間差
 
 void DxInit()
@@ -60,8 +64,27 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		float deltaTime = (crrTime - prevTime) / 1000.0f;	//秒単位に変換
 		gDeltaTime = deltaTime;	//グローバル変数に保存
 
-		stage->Update();	//ステージの更新
-		stage->Draw();		//ステージの描画
+		//ゲームオブジェクトの追加
+		if (newObjects.size() > 0)
+		{
+			for (auto& obj : newObjects)
+			{
+				gameObjects.push_back(obj);	//新しいゲームオブジェクトを追加
+			}
+			newObjects.clear();			//新しいゲームオブジェクトのベクターをクリア
+		}
+
+		//gameObjecsの更新
+		for (auto& obj : gameObjects)
+		{
+			obj->Update();		//ゲームオブジェクトの更新
+		}
+
+		//gameObjectsの描画
+		for (auto& obj : gameObjects)
+		{
+			obj->Draw();		//ゲームオブジェクトの描画
+		}
 
 		ScreenFlip();
 		WaitTimer(16);

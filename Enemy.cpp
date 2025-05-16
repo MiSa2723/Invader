@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include <DxLib.h>
 #include <string>
+//#include <assert.h>
 
 namespace
 {
@@ -50,6 +51,7 @@ Enemy::Enemy(int id, ETYPE type)
 	x_ = ENEMY_INIT_X;
 	y_ = ENEMY_INIT_Y;
 	speed_ = ENEMY_INIT_SPEED;
+	AddGameObject(this);					//敵オブジェクトをゲームオブジェクトのベクター
 }
 
 Enemy::~Enemy()

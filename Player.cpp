@@ -25,6 +25,7 @@ Player::Player()
 	x_ = PLAYER_INIT_X;
 	y_ = PLAYER_INIT_Y;
 	speed_ = PLAYER_INIT_SPEED;
+	AddGameObject(this);
 }
 
 Player::~Player()
