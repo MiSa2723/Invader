@@ -86,6 +86,19 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			obj->Draw();		//ゲームオブジェクトの描画
 		}
 
+		for (auto it = gameObjects.begin(); it != gameObjects.end();)
+		{
+			if (!(*it)->isAlive())
+			{
+				delete* it;					//ゲームオブジェクトを削除
+				it = gameObjects.erase(it);	//ベクターから削除
+			}
+			else
+			{
+				++it;	//次の要素へ
+			}
+		}
+
 		ScreenFlip();
 		WaitTimer(16);
 

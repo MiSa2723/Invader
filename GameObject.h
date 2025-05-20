@@ -3,11 +3,15 @@
 
 class GameObject
 {
+protected:
+	bool isAlive_;	//ゲームオブジェクトが生きているかどうか
+
 public:
 	GameObject();
 	virtual ~GameObject();
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+	bool isAlive() { return isAlive_; } //ゲームオブジェクトが生きているかどうか
 };
 
 extern std::vector<GameObject*> gameObjects;	//ゲームオブジェクトのベクター

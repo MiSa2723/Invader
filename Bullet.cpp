@@ -12,21 +12,23 @@ namespace
 }
 
 Bullet::Bullet()
-	:GameObject(),hBulletImage_(-1),x_(0),y_(0),isAlive_(true),
+	:GameObject(),hBulletImage_(-1),x_(0),y_(0),
 	imageSize_x(BULLET_IMAGE_WIDTH),imageSize_y(BULLET_IMAGE_HEIGHT)
 {
 	hBulletImage_ = LoadGraph(BULLET_IMAGE_PATH.c_str());	//’e‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	speed_ = BULLET_INIT_SPEED;	//ˆÚ“®‘¬“x
+	isAlive_ = true;			//’e‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©
 	AddGameObject(this);
 }
 
 Bullet::Bullet(float x, float y)
-	:GameObject(), hBulletImage_(-1), x_(x), y_(y), isAlive_(true), 
+	:GameObject(), hBulletImage_(-1), x_(x), y_(y), 
 	imageSize_x(BULLET_IMAGE_WIDTH), imageSize_y(BULLET_IMAGE_HEIGHT)
 
 {
 	hBulletImage_ = LoadGraph(BULLET_IMAGE_PATH.c_str());	//’e‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	speed_ = BULLET_INIT_SPEED;	//ˆÚ“®‘¬“x
+	isAlive_ = true;			//’e‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©
 	AddGameObject(this);
 }
 
