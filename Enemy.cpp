@@ -13,7 +13,7 @@ namespace
 }
 
 Enemy::Enemy()
-	:GameObject(), hEnemyImage_(-1), x_(0), y_(0), speed_(0), isAlive_(true)
+	:GameObject(), hEnemyImage_(-1), x_(0), y_(0), speed_(0)
 {
 	hEnemyImage_ = LoadGraph("Assets\\‰æ‘œ\\tiny_ship10.png");	//“G‚Ì‰æ‘œ‚ð“Ç‚Ýž‚Þ
 	if (hEnemyImage_ == -1)
@@ -27,7 +27,7 @@ Enemy::Enemy()
 }
 
 Enemy::Enemy(int id, ETYPE type)
-	:GameObject(),hEnemyImage_(-1),x_(0),y_(0),speed_(0),isAlive_(true),ID_(id),type_(type)
+	:GameObject(),hEnemyImage_(-1),x_(0),y_(0),speed_(0),ID_(id),type_(type)
 {
 	/*ETYPE::ZAKO=>"Assets\\‰æ‘œ\\tiny_ship10.png"
 	ETYPE::MID=>"Assets\\‰æ‘œ\\tiny_ship16.png"
@@ -68,5 +68,5 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	DrawExtendGraph(x_, y_, x_ + ENEMY_IMAGE_WIDTH, y_ + ENEMY_IMAGE_HEIGHT, hEnemyImage_, TRUE);
+	DrawExtendGraphF(x_, y_, x_ + ENEMY_IMAGE_WIDTH, y_ + ENEMY_IMAGE_HEIGHT, hEnemyImage_, TRUE);
 }

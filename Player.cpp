@@ -15,7 +15,9 @@ namespace
 	const float PLAYER_INIT_Y = WIN_HEIGHT - PLAYER_IMAGE_HEIGHT - PLAYER_BASE_MARGIN;//プレイヤーの初期Y座標
 	const int BULLET_IMAGE_MARGIN = 17;		//弾の基準マージン
 	const float BULLET_INTERVAL = 0.5f;		//弾の発射間隔
+	const int PLAYER_BULLET_NUM = 5;		//プレイヤーが発射できる弾の数
 }
+
 
 Player::Player()
 	:GameObject(),hPlayerImage_(-1),x_(0),y_(0),speed_(0)
@@ -25,9 +27,13 @@ Player::Player()
 	{
 		//エラーを返してゲーム終了
 	}
-	x_ = PLAYER_INIT_X;
-	y_ = PLAYER_INIT_Y;
+	x_ = PLAYER_INIT_X;	//初期座標
+	y_ = PLAYER_INIT_Y;	//初期座標
 	speed_ = PLAYER_INIT_SPEED;
+	for (int i = 0; i < PLAYER_BULLET_NUM; i++)
+	{
+		bullets_.push_back(new Bullet());	//弾のベクターを初期化
+	}
 	AddGameObject(this);
 }
 
@@ -59,7 +65,8 @@ void Player::Update()
 	{
 		if (bulletTimer <= 0.0f)
 		{
-			new Bullet(x_ + BULLET_IMAGE_MARGIN, y_);	//弾を発射
+			Shoot();									//弾を発射
+			//new Bullet(x_ + BULLET_IMAGE_MARGIN, y_);	//弾を発射
 			bulletTimer = BULLET_INTERVAL;				//弾の発射間隔をリセット
 		}
 	}
@@ -68,5 +75,38 @@ void Player::Update()
 void Player::Draw()
 {
 	//プレイヤーの画像を描画(画像の原点は左上)
-	DrawExtendGraph(x_, y_, x_ + PLAYER_IMAGE_WIDHT, y_ + PLAYER_IMAGE_HEIGHT, hPlayerImage_, TRUE);
+	DrawExtendGraphF(x_, y_, x_ + PLAYER_IMAGE_WIDHT, y_ + PLAYER_IMAGE_HEIGHT, hPlayerImage_, TRUE);
 }
+
+void Player::Shoot()	//弾を撃つ関数
+{
+	/*for (auto& itr : bullets_)
+	{
+		if (itr->IsFired() == false)
+		{
+			itr->SetPosition(x_ + BULLET_IMAGE_MARGIN, y_);
+			itr->SetFired(true);
+		}
+	}*/
+	
+	Bullet* bit = GetActiveBullet();
+	if (bit != nullptr)
+	{
+		bit->SetPosition(x_ + BULLET_IMAGE_MARGIN, y_);
+		bit->SetFired(true);
+	}
+}
+
+Bullet* Player::GetActiveBullet()
+{
+	for (auto& itr : bullets_)
+	{
+		if (!itr->IsFired())
+		{
+			return itr;	//発射されていない弾を返す
+		}
+	}
+
+	return nullptr;
+}
+
