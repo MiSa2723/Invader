@@ -11,14 +11,14 @@ public:
 	virtual ~GameObject();
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	bool isAlive() { return isAlive_; } //ゲームオブジェクトが生きているかどうか
+	bool IsAlive() { return isAlive_; }				//ゲームオブジェクトが生きているかどうか
 	void SetAlive(bool alive) { isAlive_ = alive; }	//ゲームオブジェクトの
 };
 
-extern std::vector<GameObject*> gameObjects;	//ゲームオブジェクトのベクター
-extern std::vector<GameObject*> newObjects;	//ゲームオブジェクトのベクター
+extern std::vector<GameObject*> gameObjects;		//ゲームオブジェクトのベクター
+extern std::vector<GameObject*> newObjects;			//ゲームオブジェクトのベクター
 
 inline void AddGameObject(GameObject* obj)
 {
-	newObjects.push_back(obj);					//ゲームオブジェクトをベクターに追加
+	newObjects.push_back(obj);						//ゲームオブジェクトをベクターに追加
 }

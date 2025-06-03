@@ -9,8 +9,9 @@ class Stage :
     public GameObject
 {
 private:
-    Player* player_;            //プレイヤーオブジェクト
-    std::vector<Enemy *> enemy_; //敵オブジェクト
+    Player* player_;                //プレイヤーオブジェクト
+    std::vector<Enemy *> enemy_;    //敵オブジェクト
+    int hBackground_;
 
 public:
     Stage();
