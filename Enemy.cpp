@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include <string>
 #include "Effect.h"
+#include "globals.h"
 //#include <assert.h>
 
 namespace
@@ -53,11 +54,12 @@ Enemy::Enemy(int id, ETYPE type)
 	x_ = ENEMY_INIT_X;
 	y_ = ENEMY_INIT_Y;
 	speed_ = ENEMY_INIT_SPEED;
-	AddGameObject(this);					//敵オブジェクトをゲームオブジェクトのベクター
+	AddGameObject(this);
 }
 
 Enemy::~Enemy()
 {
+	new Effect({ x_,y_ });
 	if (hEnemyImage_ != -1)
 	{
 		DeleteGraph(hEnemyImage_);	//画像のハンドルを解放
@@ -66,6 +68,14 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
+	float period = 10.0f;
+	float omega = 2.0f * 3.14159265f / period;
+	moveTime_ = moveTime_ + GetDeltaTime();
+	x_ = xorigin_ + xMoveMax_ / 2.0 * sinf(omega * moveTime_);
+	y_ = y_;
+
+	/*x_ = x_ + 0.5;
+	y_ = y_;*/
 }
 
 void Enemy::Draw()

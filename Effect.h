@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "globals.h"
+#include <vector>
 
 class Effect :
     public GameObject
@@ -14,8 +15,10 @@ public:
 protected:
 
 private:
-    int hImage_;
+    std::vector<int> hImage_;
     Point pos_;
-    float animeTimer_;
+    float animeTimer_;  //エフェクトの寿命
+    float frameTimer_;  //フレームのタイマー
+    int frame_;         //フレームのコマ番号
 };
 

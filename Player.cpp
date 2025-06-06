@@ -44,14 +44,21 @@ Player::~Player()
 
 void Player::Update()
 {
+	Point nextPoint = { x_,y_ };
 	float dt = GetDeltaTime();	//フレーム間の時間差を取得
 	if (Input::IsKeepKeyDown(KEY_INPUT_LEFT))
 	{
-		x_ = x_ - speed_ * dt;	//左に移動
+		nextPoint.x = x_ - speed_ * dt;	//左に移動
 	}
 	if (Input::IsKeepKeyDown(KEY_INPUT_RIGHT))
 	{
-		x_ = x_ + speed_ * dt;	//右に移動
+		nextPoint.x = x_ + speed_ * dt;	//右に移動
+	}
+
+	if (nextPoint.x >= 0 && (nextPoint.x + PLAYER_IMAGE_WIDHT) <= WIN_WIDTH)
+	{
+		x_ = nextPoint.x;
+		y_ = nextPoint.y;
 	}
 
 	static float bulletTimer = 0.0f;	//弾の発射タイマー
