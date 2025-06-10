@@ -38,8 +38,10 @@ Stage::Stage()
 		int row = i / ENEMY_COLUMN_SIZE;					//行
 		ETYPE enemyType[ENEMY_ROW_SIZE] = { BOSS,KNIGHT,MID,ZAKO,ZAKO,ZAKO,ZAKO };	//敵の種類
 		enemy_[i] = new Enemy(i, enemyType[row]);			//敵オブジェクトの生成
+		enemy_[i]->SetMaxMoveX(ENEMY_LEFT_MARGIN);
 		enemy_[i]->SetPosition(col * ENEMY_ALIGN_X + ENEMY_LEFT_MARGIN,
 			row * ENEMY_ALIGN_Y + ENEMY_TOP_MARGIN);		//敵の初期位置を決定
+		enemy_[i]->SetXorigin(col * ENEMY_ALIGN_X + ENEMY_LEFT_MARGIN);
 	}
 	hBackground_ = LoadGraph("Assets\\画像\\bg.png");
 }

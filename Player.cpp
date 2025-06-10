@@ -96,11 +96,11 @@ void Player::Shoot()	//’e‚ðŒ‚‚ÂŠÖ”
 		}
 	}*/
 	
-	Bullet* bit = GetActiveBullet();
-	if (bit != nullptr)
+	Bullet* blt = GetActiveBullet();
+	if (blt != nullptr)
 	{
-		bit->SetPosition(x_ + BULLET_IMAGE_MARGIN, y_);
-		bit->SetFired(true);
+		blt->SetPosition(x_ + BULLET_IMAGE_MARGIN, y_);
+		blt->SetFired(true);
 	}
 }
 
@@ -113,7 +113,6 @@ Bullet* Player::GetActiveBullet()
 			return itr;	//”­ŽË‚³‚ê‚Ä‚¢‚È‚¢’e‚ð•Ô‚·
 		}
 	}
-
 	return nullptr;
 }
 
