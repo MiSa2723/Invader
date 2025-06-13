@@ -21,6 +21,7 @@ public:
     //void SetID(int id) { ID_ = id; }                        //敵のIDを設定
     void SetMaxMoveX(float xmax) { xMoveMax_ = xmax; }
     void SetXorigin(float x) { xorigin_ = x; }
+    //std::vector<EnemyBeam*> GetAllBullets() const { return eneBeam_; }  //全ての弾を取得
 
 protected:
 
@@ -35,5 +36,7 @@ private:
 
     int ID_;            //敵のID
     ETYPE type_;        //敵の種類
+
+    //std::vector<EnemyBeam*> eneBeam_; //エネミーが発射した弾のベクター
 };
 

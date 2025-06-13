@@ -9,13 +9,15 @@ class Stage :
     public GameObject
 {
 private:
-    Player* player_;                //プレイヤーオブジェクト
-    std::vector<Enemy *> enemy_;    //敵オブジェクト
+    Player* player_;                    //プレイヤーオブジェクト
+    std::vector<Enemy *> enemy_;        //敵オブジェクト
+//    std::vector<EnemyBeam *> eneBeam_;  //敵の弾
     int hBackground_;
 
 public:
     Stage();
     ~Stage();
+
     void Update() override;
     void Draw() override;
 };

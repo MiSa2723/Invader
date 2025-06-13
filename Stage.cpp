@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
+#include "EnemyBeam.h"
 
 namespace
 {
@@ -24,6 +25,8 @@ namespace
 		//xŽ²‚ÆyŽ²‚Ì—¼•û‚Ì“–‚½‚è”»’è
 		return xOverlap && yOverlap;
 	}
+	
+	//std::vector<Player*> bullets = 
 }
 
 Stage::Stage()
@@ -53,7 +56,7 @@ Stage::~Stage()
 void Stage::Update()
 {
 	std::vector<Bullet*> bullets = player_->GetAllBullets();
-	for (auto &e : enemy_)
+	for (auto& e : enemy_)
 	{
 		for (auto& b : bullets)
 		{
@@ -73,6 +76,27 @@ void Stage::Update()
 			}
 		}
 	}
+	/*std::vector<EnemyBeam*> eneBullets = enemy_->GetAllBullets();
+	for (auto& e : enemy_)
+	{
+		for (auto& b : bullets)
+		{
+			if (b->IsFired() && e->IsAlive())
+			{
+				if (IntersectRect(e->GetRect(), b->GetRect()))
+				{
+					if (b->IsFired())
+					{
+						b->SetFired(false);
+					}
+					if (e->IsAlive())
+					{
+						e->SetAlive(false);
+					}
+				}
+			}
+		}
+	}*/
 }
 
 void Stage::Draw()

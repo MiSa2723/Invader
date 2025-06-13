@@ -6,7 +6,7 @@
 
 namespace
 {
-	const float PLAYER_INIT_SPEED = 200.0f;	//プレイヤーの速度
+	const float PLAYER_INIT_SPEED = 250.0f;	//プレイヤーの速度
 	const int PLAYER_IMAGE_WIDHT = 48;		//プレイヤーの画像の幅
 	const int PLAYER_IMAGE_HEIGHT = 48;		//プレイヤーの画像の高さ
 	const int PLAYER_BASE_MARGIN = 32;		//プレイヤーの基準マージン

@@ -26,6 +26,6 @@ private:
     float speed_;                       //弾の移動速度
     Point imageSize_;
     //int imageSize_x, imageSize_y;     //弾の表示サイズ
-    bool isFired_;                      //発射されているかどうか　true:されている　false:されていない
+    bool isFired_;
 }; 
 

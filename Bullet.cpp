@@ -13,7 +13,7 @@ namespace
 
 Bullet::Bullet()
 	:GameObject(),hBulletImage_(-1),x_(0),y_(0),
-	imageSize_({ BULLET_IMAGE_WIDTH ,BULLET_IMAGE_HEIGHT }), isFired_(false)
+	imageSize_({ BULLET_IMAGE_WIDTH ,BULLET_IMAGE_HEIGHT }),isFired_(false)
 {
 	hBulletImage_ = LoadGraph(BULLET_IMAGE_PATH.c_str());	//’e‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	speed_ = BULLET_INIT_SPEED;	//ˆÚ“®‘¬“x
@@ -23,7 +23,6 @@ Bullet::Bullet()
 Bullet::Bullet(float x, float y)
 	:GameObject(), hBulletImage_(-1), x_(x), y_(y), 
 	imageSize_({ BULLET_IMAGE_WIDTH ,BULLET_IMAGE_HEIGHT }), isFired_(false)
-
 {
 	hBulletImage_ = LoadGraph(BULLET_IMAGE_PATH.c_str());	//’e‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	speed_ = BULLET_INIT_SPEED;	//ˆÚ“®‘¬“x

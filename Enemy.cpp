@@ -15,8 +15,8 @@ namespace
 }
 
 Enemy::Enemy()
-	:GameObject(), hEnemyImage_(-1), x_(0), y_(0), speed_(0),imageSize_({ ENEMY_IMAGE_WIDTH ,ENEMY_IMAGE_HEIGHT }),
-	moveTime_(0)
+	:GameObject(), hEnemyImage_(-1), x_(0), y_(0), speed_(0),
+	imageSize_({ ENEMY_IMAGE_WIDTH ,ENEMY_IMAGE_HEIGHT }),moveTime_(0)
 {
 	hEnemyImage_ = LoadGraph("Assets\\‰æ‘œ\\tiny_ship10.png");	//“G‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	if (hEnemyImage_ == -1)
