@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "Input.h"
 #include <vector>
+#include "SceneTransition.h"
 #include "Stage.h"
 
 namespace
@@ -52,7 +53,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	crrTime = GetNowCount();
 	prevTime = GetNowCount();
 
-	Stage* stage = new Stage();
+	//Stage* stage = new Stage();
+	SceneTransition* scene = new SceneTransition();
 
 	while (true)
 	{
@@ -62,7 +64,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		crrTime = GetNowCount();	//現在の時間を取得
 		//前回の時間との差分を計算
 		float deltaTime = (crrTime - prevTime) / 1000.0f;	//秒単位に変換
-		gDeltaTime = deltaTime;	//グローバル変数に保存
+		gDeltaTime = deltaTime;		//グローバル変数に保存
+
+
 
 		//ゲームオブジェクトの追加
 		if (newObjects.size() > 0)
@@ -71,7 +75,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			{
 				gameObjects.push_back(obj);	//新しいゲームオブジェクトを追加
 			}
-			newObjects.clear();			//新しいゲームオブジェクトのベクターをクリア
+			newObjects.clear();				//新しいゲームオブジェクトのベクターをクリア
 		}
 
 		//gameObjecsの更新
