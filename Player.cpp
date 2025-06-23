@@ -23,7 +23,7 @@ Player::Player()
 	:GameObject(),hPlayerImage_(-1),x_(0),y_(0),speed_(0),imageSize_({ PLAYER_IMAGE_WIDHT ,PLAYER_IMAGE_HEIGHT })
 {
 	hPlayerImage_ = LoadGraph("Assets\\画像\\tiny_ship5.png"); //プレイヤーの画像読み込み
-	if (hPlayerImage_ == 1)
+	if (hPlayerImage_ == -1)
 	{
 		//エラーを返してゲーム終了
 	}
@@ -83,6 +83,9 @@ void Player::Draw()
 {
 	//プレイヤーの画像を描画(画像の原点は左上)
 	DrawExtendGraphF(x_, y_, x_ + PLAYER_IMAGE_WIDHT, y_ + PLAYER_IMAGE_HEIGHT, hPlayerImage_, TRUE);
+
+
+	DrawFormatString(100, 100, GetColor(255, 255, 0), "Player Draw!");
 }
 
 void Player::Shoot()	//弾を撃つ関数

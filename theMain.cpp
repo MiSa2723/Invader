@@ -12,6 +12,29 @@ namespace
 	int prevTime;
 }
 
+
+enum class GameState 
+{
+	TITLE,
+	PLAY,
+	GAMEOVER
+};
+
+
+void DrawTitleScreen() 
+{
+	DrawFormatString(300, 200, GetColor(255, 255, 255), "インベーダーゲーム");
+	DrawFormatString(300, 250, GetColor(255, 255, 255), "スペースキーでスタート");
+}
+
+void DrawGameOverScreen() 
+{
+	DrawFormatString(300, 200, GetColor(255, 0, 0), "ゲームオーバー");
+	DrawFormatString(300, 250, GetColor(255, 255, 255), "Rキーでリトライ / Tキーでタイトルへ");
+}
+
+
+
 std::vector<GameObject*> gameObjects;		//ゲームオブジェクトのベクター
 std::vector<GameObject*> newObjects;		//ゲームオブジェクトのベクター
 
@@ -53,8 +76,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	crrTime = GetNowCount();
 	prevTime = GetNowCount();
 
+	GameState gameState = GameState::TITLE;
+	Stage* stage = nullptr;
+
 	//Stage* stage = new Stage();
-	SceneTransition* scene = new SceneTransition();
+	//SceneTransition* scene = new SceneTransition();
 
 	while (true)
 	{
@@ -67,8 +93,42 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		gDeltaTime = deltaTime;		//グローバル変数に保存
 
 
+		switch (gameState)
+		{
+		case GameState::TITLE:
+			DrawTitleScreen();
+			if (CheckHitKey(KEY_INPUT_SPACE)) {
+				stage = new Stage();
+				gameState = GameState::PLAY;
+			}
+			break;
 
-		//ゲームオブジェクトの追加
+		case GameState::PLAY:
+			DrawFormatString(10, 10, GetColor(255, 255, 255), "gameObjects: %d", gameObjects.size());
+			// ゲームオブジェクトの追加・更新・描画処理
+			// ↓ここにゲームオーバー判定を追加
+			if (stage->IsGameOver()) {
+				gameState = GameState::GAMEOVER;
+			}
+			break;
+
+		case GameState::GAMEOVER:
+			DrawGameOverScreen();
+			if (CheckHitKey(KEY_INPUT_R)) {
+				delete stage;
+				stage = new Stage();
+				gameState = GameState::PLAY;
+			}
+			else if (CheckHitKey(KEY_INPUT_T)) {
+				delete stage;
+				gameObjects.clear();
+				gameState = GameState::TITLE;
+			}
+			break;
+		}
+		//*/
+
+		/*//ゲームオブジェクトの追加
 		if (newObjects.size() > 0)
 		{
 			for (auto& obj : newObjects)
@@ -102,6 +162,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				++it;	//次の要素へ
 			}
 		}
+		:*/
 
 		ScreenFlip();
 		WaitTimer(16);

@@ -35,5 +35,5 @@ void SceneTransition::Draw()
 	{
 		DrawFormatString(100, 100, GetColor(0, 0, 0), "Invader Game");
 	}
-	DrawFormatString(100, 200, GetColor(0, 0, 0), "Invader Game");
+	//DrawFormatString(100, 200, GetColor(0, 0, 0), "Invader Game");
 }

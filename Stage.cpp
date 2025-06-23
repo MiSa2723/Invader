@@ -5,6 +5,8 @@
 #include "Bullet.h"
 #include "EnemyBeam.h"
 
+extern std::vector<GameObject*> newObjects;
+
 namespace
 {
 	const int ENEMY_NUM = 10 * 7;		//敵の数
@@ -34,6 +36,8 @@ Stage::Stage()
 {
 	AddGameObject(this);	//ステージオブジェクトをゲームオブジェクトに
 	player_ = new Player();	//プレイヤーオブジェクトの生成
+	newObjects.push_back(player_); // プレイヤーを追加
+
 	enemy_ = std::vector<Enemy*>(ENEMY_NUM);
 	for (int i = 0; i < ENEMY_NUM; i++)
 	{
@@ -45,6 +49,8 @@ Stage::Stage()
 		enemy_[i]->SetPosition(col * ENEMY_ALIGN_X + ENEMY_LEFT_MARGIN,
 			row * ENEMY_ALIGN_Y + ENEMY_TOP_MARGIN);		//敵の初期位置を決定
 		enemy_[i]->SetXorigin(col * ENEMY_ALIGN_X + ENEMY_LEFT_MARGIN);
+
+		newObjects.push_back(enemy_[i]); // 敵を追加
 	}
 	hBackground_ = LoadGraph("Assets\\画像\\bg.png");
 }
@@ -104,4 +110,10 @@ void Stage::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
 	DrawExtendGraph(0, 0, WIN_WIDTH, WIN_HEIGHT, hBackground_, FALSE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
+bool Stage::IsGameOver() const
+{
+	//敵の弾とプレイヤーの当たり判定が実装できなかったため、Gを押したら遷移するような処理
+	return CheckHitKey(KEY_INPUT_G);
 }

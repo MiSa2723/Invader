@@ -20,5 +20,7 @@ public:
 
     void Update() override;
     void Draw() override;
+
+    bool IsGameOver() const;    //ゲームオーバーかどうか
 };
 
